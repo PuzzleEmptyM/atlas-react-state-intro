@@ -1,4 +1,17 @@
-export default function SchoolCatalog() {
+import { useEffect, useState } from "react";
+
+const SchoolCatalog = () => {
+
+  function Course() {
+    const [course, setCourse] = useState([]);
+
+    useEffect(() => {
+      fetch("../api/courses.json")
+      .then((response) => response.json())
+      .then((data) => setCourse(data.message));
+    }, []);
+  }
+
   return (
     <div className="school-catalog">
       <h1>School Catalog</h1>
@@ -54,3 +67,5 @@ export default function SchoolCatalog() {
     </div>
   );
 }
+
+export default SchoolCatalog;
