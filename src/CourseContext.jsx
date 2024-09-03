@@ -6,11 +6,12 @@ export const CourseProvider = ({ children }) => {
   const [enrolledCourses, setEnrolledCourses] = useState([]);
 
   const enrollCourse = (course) => {
+    console.log("Enrolling course:", course);
     setEnrolledCourses([...enrolledCourses, course]);
   };
 
   const dropCourse = (courseId) => {
-    setEnrolledCourses(enrolledCourses.filter(course => course.id !== courseId));
+    setEnrolledCourses(enrolledCourses.filter(course => course.courseNumber !== courseId));
   };
 
   return (
