@@ -5,6 +5,7 @@ const SchoolCatalog = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortColumn, setSortColumn] = useState(null);
   const [sortDirection, setSortDirection] = useState("asc");
+  const [currentPage, setCurrentPage] = useState(1);
 
 
   useEffect(() => {
@@ -43,6 +44,11 @@ const SchoolCatalog = () => {
     course.courseName.toLowerCase().includes(searchTerm.toLowerCase())
   );
   
+  const itemsPerPage = 5;
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endingIndex = startIndex + itemsPerPage;
+  const paginatedCourses = sortedCourses.slice(startIndex, endingIndex);
+
   return (
     <div className="school-catalog">
       <h1>School Catalog</h1>
@@ -64,7 +70,7 @@ const SchoolCatalog = () => {
         </tr>
       </thead>
         <tbody>
-          {sortedCourses.map((course, index) => (
+          {paginatedCourses.map((course, index) => (
             <tr key={index}>
               <td>{course.trimester}</td>
               <td>{course.courseNumber}</td>
@@ -79,8 +85,18 @@ const SchoolCatalog = () => {
         </tbody>
       </table>
       <div className="pagination">
-        <button>Previous</button>
-        <button>Next</button>
+        <button 
+          onClick={() => setCurrentPage(currentPage > 1 ? currentPage - 1 : currentPage)}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        <button 
+          onClick={() => setCurrentPage(endingIndex < filteredCourses.length ? currentPage + 1 : currentPage)}
+          disabled={endingIndex >= filteredCourses.length}
+        >
+          Next
+        </button>
       </div>
     </div>
   );
