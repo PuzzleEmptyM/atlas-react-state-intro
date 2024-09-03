@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { CourseContext } from "./CourseContext";
 
 const SchoolCatalog = () => {
   const [courses, setCourses] = useState([]);
@@ -6,6 +8,8 @@ const SchoolCatalog = () => {
   const [sortColumn, setSortColumn] = useState(null);
   const [sortDirection, setSortDirection] = useState("asc");
   const [currentPage, setCurrentPage] = useState(1);
+  const { enrollCourse } = useContext(CourseContext);
+
 
 
   useEffect(() => {
@@ -78,7 +82,7 @@ const SchoolCatalog = () => {
               <td>{course.credits}</td>
               <td>{course.clockHours}</td>
               <td>
-                <button>Enroll</button>
+                <button onClick={() => enrollCourse(course)}>Enroll</button>
               </td>
             </tr>
           ))}
