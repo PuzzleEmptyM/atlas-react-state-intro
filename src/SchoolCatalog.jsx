@@ -68,8 +68,8 @@ const SchoolCatalog = () => {
           <th onClick={() => handleSort("trimester")}>Trimester</th>
           <th onClick={() => handleSort("courseNumber")}>Course Number</th>
           <th onClick={() => handleSort("courseName")}>Course Name</th>
-          <th onClick={() => handleSort("credits")}>Semester Credits</th>
-          <th onClick={() => handleSort("clockHours")}>Total Clock Hours</th>
+          <th onClick={() => handleSort("semesterCredits")}>Semester Credits</th>
+          <th onClick={() => handleSort("totalClockHours")}>Total Clock Hours</th>
           <th>Enroll</th>
         </tr>
       </thead>
@@ -79,8 +79,8 @@ const SchoolCatalog = () => {
               <td>{course.trimester}</td>
               <td>{course.courseNumber}</td>
               <td>{course.courseName}</td>
-              <td>{course.credits}</td>
-              <td>{course.clockHours}</td>
+              <td>{course.semesterCredits}</td>
+              <td>{course.totalClockHours}</td>
               <td>
                 <button onClick={() => enrollCourse(course)}>Enroll</button>
               </td>
