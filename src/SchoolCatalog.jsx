@@ -51,7 +51,7 @@ const SchoolCatalog = () => {
   const itemsPerPage = 5;
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endingIndex = startIndex + itemsPerPage;
-  const paginatedCourses = sortedCourses.slice(startIndex, endingIndex);
+  const paginatedCourses = filteredCourses.slice(startIndex, endingIndex);
 
   return (
     <div className="school-catalog">
